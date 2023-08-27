@@ -11,6 +11,8 @@ function Filter() {
     type: "",
   });
   const [statusFields, setStatusFields] = useState([]);
+  const [serialFields, setSerialFields] = useState([]);
+  const [typeFields, setTypeFields] = useState([]);
 
   useEffect(() => {
     fetchFilter();
@@ -36,7 +38,9 @@ function Filter() {
     const statusFields = [...new Set(data.docs.map((item) => item.status))];
     setStatusFields(statusFields);
     const serialFields = [...new Set(data.docs.map((item) => item.serial))];
+    setSerialFields(serialFields);
     const typeFields = [...new Set(data.docs.map((item) => item.type))];
+    setTypeFields(typeFields);
   };
 
   const applyFilters = () => {
@@ -58,56 +62,67 @@ function Filter() {
   };
 
   return (
-    <div className="mb-4">
-      <label className="block font-semibold mb-1">Search Capsules</label>
-      <span className="relative">
-        {/* <input
-          type="text"
-          className="border px-2 py-1 rounded"
-          placeholder="Search by status"
-          value={filterFields.status}
-          onChange={handleStatusChange}
-        /> */}
-        <select
-          className="border px-2 py-1 rounded"
-          value={filterFields.status}
-          onChange={handleStatusChange}
-        >
-          <option value="">Select Status</option>
-          {statusFields.map((status) => (
-            <option key={status} value={status}>
-              {status}
-            </option>
-          ))}
-        </select>
-      </span>
-      <span>
-        <input
-          type="text"
-          className="border px-2 py-1 rounded ml-2 relative"
-          placeholder="Search by serial"
-          value={filterFields.serial}
-          onChange={(e) =>
-            setFilterFields({ ...filterFields, serial: e.target.value })
-          }
-        />
-      </span>
+    <div className=" w-full container flex flex-col py-8">
+      <div className="text-2xl font-semibold  uppercase mb-4">
+        Search Capsules
+      </div>
+      <div className="w-full grid grid-cols-3  gap-8 text-sm">
+        <span className="relative w-full">
+          <select
+            className="border px-2 py-1 rounded w-full"
+            value={filterFields.status}
+            onChange={handleStatusChange}
+          >
+            <option value="">Select Capsule Status</option>
+            {statusFields.map((status) => (
+              <option key={status} value={status}>
+                {status}
+              </option>
+            ))}
+          </select>
+        </span>
 
-      <input
-        type="text"
-        className="border px-2 py-1 rounded ml-2"
-        placeholder="Search by type"
-        value={filterFields.type}
-        onChange={(e) =>
-          setFilterFields({ ...filterFields, type: e.target.value })
-        }
-      />
-      <button
-        className="bg-blue-500 text-white px-3 py-1 rounded ml-2"
-        onClick={applyFilters}
-      >
-        Apply Filters
-      </button>
+        <span className="relative w-full">
+          <select
+            className="border px-2 py-1 rounded w-full"
+            value={filterFields.serial}
+            onChange={(e) =>
+              setFilterFields({ ...filterFields, serial: e.target.value })
+            }
+          >
+            <option value="">Select Serial Number</option>
+            {serialFields.map((serial) => (
+              <option key={serial} value={serial}>
+                {serial}
+              </option>
+            ))}
+          </select>
+        </span>
+        <span className="relative w-full">
+          <select
+            className="border px-2 py-1 rounded w-full"
+            value={filterFields.type}
+            onChange={(e) =>
+              setFilterFields({ ...filterFields, type: e.target.value })
+            }
+          >
+            <option value="">Select Capsule Type</option>
+            {typeFields.map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))}
+          </select>
+        </span>
+      </div>
+      <span className="flex w-full justify-end ">
+        <button
+          className="w-52 text-white px-3 py-2 bg-spaceblue rounded-2xl hover:bg-white hover:text-spaceblue hover:border-spaceblue hover:border h-12"
+          onClick={applyFilters}
+        >
+          Apply Filters
+        </button>{" "}
+      </span>
     </div>
   );
 }
