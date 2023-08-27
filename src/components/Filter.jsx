@@ -69,7 +69,7 @@ function Filter() {
       <div className="text-2xl font-semibold  uppercase mb-4">
         Search Capsules
       </div>
-      <div className="w-full grid grid-cols-3  gap-8 text-sm py-3">
+      <div className="w-full grid sm:grid-cols-3  gap-8 text-sm py-3">
         <span className="relative appearance-none border-b outline-none border-spaceblue w-full">
           <select
             className=" px-2 py-2 outline-none  w-full"
