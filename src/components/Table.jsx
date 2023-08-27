@@ -44,7 +44,7 @@ function Table() {
   };
 
   return (
-    <div className="container mx-auto p-8">
+    <div className="container mx-auto py-8">
       <h1 className="text-2xl font-semibold  uppercase mb-4">Capsules</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full">
