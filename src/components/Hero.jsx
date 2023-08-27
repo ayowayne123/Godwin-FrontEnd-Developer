@@ -25,7 +25,7 @@ function Hero() {
             <Link href="https://spacex.com">Capsules</Link>
           </div>
         </div>
-        <div className="container  text-white grid grid-cols-2 pt-32 ">
+        <div className="container absolute inset-0 h-full items-center  text-white grid grid-cols-2  ">
           <div> </div>
           <div className="flex flex-col justify-between gap-12">
             <span className="text-6xl font-bold w-[412px] flex tracking-[2.88px] ">
