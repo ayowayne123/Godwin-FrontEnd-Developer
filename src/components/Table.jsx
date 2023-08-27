@@ -21,6 +21,9 @@ function Table() {
     }
     if (selectedFilters.serial) filters.serial = selectedFilters.serial;
     if (selectedFilters.type) filters.type = selectedFilters.type;
+    if (selectedFilters.currentPage === 1) {
+      setCurrentPage(1);
+    }
     const response = await fetch(
       "https://api.spacexdata.com/v4/capsules/query",
       {
@@ -96,17 +99,21 @@ function Table() {
           </tbody>
         </table>
       </div>
-      <div className="flex justify-center mt-4">
+      <div className="flex gap-6 justify-center items-center mt-4">
         <button
           onClick={() => setCurrentPage(currentPage - 1)}
-          className="mr-2 px-3 py-1 border rounded disabled:opacity-50"
+          className="px-3 bg-pink-600 text-bold text-white py-1  rounded disabled:opacity-50"
           disabled={currentPage === 1}
         >
           Previous
         </button>
+        <span>
+          Page {check.page ? check.page : 1} of{" "}
+          {check.totalPages ? check.totalPages : 1}
+        </span>
         <button
           onClick={() => setCurrentPage(currentPage + 1)}
-          className={`px-3 py-1 border rounded disabled:opacity-50`}
+          className={`px-3 bg-pink-600 text-bold text-white py-1  rounded disabled:opacity-50`}
           disabled={currentPage === check.totalPages}
         >
           Next

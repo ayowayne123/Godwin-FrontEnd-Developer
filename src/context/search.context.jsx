@@ -9,6 +9,7 @@ export function FilterProvider({ children }) {
     status: "",
     serial: "",
     type: "",
+    currentPage: "",
   });
 
   return (
