@@ -52,19 +52,19 @@ function Table() {
       <div className="overflow-x-auto">
         <table className="min-w-full">
           <thead>
-            <tr className="grid grid-cols-5 items-center  w-full  bg-[#BAD0ED] uppercase font-semibold  divide-x divide-black border border-black">
+            <tr className="grid sm:grid-cols-5  grid-cols-4 items-center  w-full  bg-[#BAD0ED] uppercase font-semibold text-xs lg:text-base divide-x divide-black border border-black">
               <th className="py-2">Capsule Serial</th>
               <th className="py-2">Capsule Type</th>
               <th className="py-2">Water Landings</th>
               <th className="py-2">Land Landings</th>
-              <th className="py-2">Status</th>
+              <th className="py-2 sm:block hidden ">Status</th>
             </tr>
           </thead>
           <tbody>
             {data.map((item) => (
               <tr
                 key={item.serial}
-                className="grid grid-cols-5 gap-y-2 py-2 items-center justify-center  w-full even:bg-blue-100  "
+                className="grid sm:grid-cols-5  grid-cols-4  gap-y-2 py-2 items-center justify-center  w-full even:bg-blue-100  "
               >
                 <td className="flex tems-center justify-center">
                   {item.serial}
@@ -76,7 +76,8 @@ function Table() {
                 <td className="flex tems-center justify-center">
                   {item.land_landings}
                 </td>
-                <td className="flex tems-center justify-center">
+                <td className="flex flex-row items-center sm:justify-center col-span-4 sm:col-span-1 justify-start">
+                  <span className="flex sm:hidden px-5">Status:</span>
                   <span
                     className={`py-1 flex w-24 justify-center text-sm items-center rounded-lg ${
                       item.status === "unknown" && "bg-blue-300 text-blue-600"
@@ -91,7 +92,7 @@ function Table() {
                       item.status === "retired" && "bg-red-300 text-red-600"
                     }`}
                   >
-                    {item.status}{" "}
+                    {item.status}
                   </span>
                 </td>
               </tr>
