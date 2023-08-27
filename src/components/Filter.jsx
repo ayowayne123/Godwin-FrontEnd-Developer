@@ -49,12 +49,15 @@ function Filter() {
       status: filterFields.status,
       serial: filterFields.serial,
       type: filterFields.type,
+      currentPage: 1,
     });
     setFilterFields({
       status: "",
       serial: "",
       type: "",
     });
+
+    console.log(selectedFilters);
   };
 
   const handleStatusChange = (e) => {
@@ -66,10 +69,10 @@ function Filter() {
       <div className="text-2xl font-semibold  uppercase mb-4">
         Search Capsules
       </div>
-      <div className="w-full grid grid-cols-3  gap-8 text-sm">
-        <span className="relative w-full">
+      <div className="w-full grid grid-cols-3  gap-8 text-sm py-3">
+        <span className="relative appearance-none border-b outline-none border-spaceblue w-full">
           <select
-            className="border px-2 py-1 rounded w-full"
+            className=" px-2 py-2 outline-none  w-full"
             value={filterFields.status}
             onChange={handleStatusChange}
           >
@@ -82,9 +85,9 @@ function Filter() {
           </select>
         </span>
 
-        <span className="relative w-full">
+        <span className="relative appearance-none border-b outline-none border-spaceblue w-full">
           <select
-            className="border px-2 py-1 rounded w-full"
+            className=" px-2 py-2 outline-none  w-full"
             value={filterFields.serial}
             onChange={(e) =>
               setFilterFields({ ...filterFields, serial: e.target.value })
@@ -98,9 +101,9 @@ function Filter() {
             ))}
           </select>
         </span>
-        <span className="relative w-full">
+        <span className="relative appearance-none border-b outline-none border-spaceblue w-full">
           <select
-            className="border px-2 py-1 rounded w-full"
+            className=" px-2 py-2 outline-none  w-full"
             value={filterFields.type}
             onChange={(e) =>
               setFilterFields({ ...filterFields, type: e.target.value })
