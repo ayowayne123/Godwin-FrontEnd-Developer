@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useFilterContext } from "@/context/search.context";
+import CapsulePopup from "./CapsulePopup";
 
 function Table() {
   const { selectedFilters } = useFilterContext();
@@ -8,6 +9,9 @@ function Table() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const [check, setCheck] = useState([]);
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedCapsule, setSelectedCapsule] = useState(null);
+  const authToken = process.env.NEXT_PUBLIC_AUTH_TOKEN;
 
   useEffect(() => {
     fetchData();
@@ -24,8 +28,9 @@ function Table() {
     if (selectedFilters.currentPage === 1) {
       setCurrentPage(1);
     }
+
     const response = await fetch(
-      "https://api.spacexdata.com/v4/capsules/query",
+      `https://test.thinktech.ng/?key=${authToken}`,
       {
         method: "POST",
         headers: {
@@ -63,8 +68,12 @@ function Table() {
           <tbody>
             {data.map((item) => (
               <tr
+                onClick={() => {
+                  setSelectedCapsule(item);
+                  setShowPopup(true);
+                }}
                 key={item.serial}
-                className="grid sm:grid-cols-5  grid-cols-4  gap-y-2 py-2 items-center justify-center  w-full even:bg-blue-100  "
+                className="grid sm:grid-cols-5  grid-cols-4  gap-y-2 py-2 items-center justify-center  w-full even:bg-blue-100  cursor-pointer hover:bg-slate-300  "
               >
                 <td className="flex tems-center justify-center">
                   {item.serial}
@@ -120,6 +129,12 @@ function Table() {
           Next
         </button>
       </div>
+      {showPopup && (
+        <CapsulePopup
+          capsule={selectedCapsule}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
     </div>
   );
 }
